@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Services\AuthService;
 use Illuminate\Http\Request;
+use App\Services\AuthService;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    protected $authService;
+    // protected $authService;
 
-    public function __construct(AuthService $authService){
-        $this->authService = $authService;
-    }
+    // public function __construct(AuthService $authService){
+    //     $this->authService = $authService;
+    // }
     //return view login
-    public function login(){
+    public function login(): View
+    {
         $title = "login|page";
         $tktk = "dkqdkwq";
     return view("auth.login",compact("title"));
@@ -24,9 +26,11 @@ class AuthController extends Controller
     //be login
     public function store(LoginRequest $request){
         $request->validated();
-        return $this->authService->login($request->all());
+        // return $this->authService->login($request->all());
+        $remember = $request->remember? true : false;
+        return AuthService::login($request->all(),$remember);
     }
     public function logout(){
-    return $this->authService->logout(request());
+    return AuthService::logout(request());
     }
 }

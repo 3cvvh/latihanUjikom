@@ -10,6 +10,7 @@ use illuminate\Support\Str;
 
 class Produk extends Model
 {
+    use SoftDeletes;
     protected $guarded = ["id"];
     public function setNameAttribute($value)
     {

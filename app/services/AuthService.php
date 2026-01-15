@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 class AuthService{
-    public function login(array $data)
+    public static function login(array $data,bool $remember)
     {
-        if(Auth::attempt(["email" => $data["email"],"password" => $data["password"]])){
+        if(Auth::attempt(["email" => $data["email"],"password" => $data["password"],$remember])){
             session()->regenerate();
             return redirect()->intended(Route::has('dashboard'));
         }
@@ -17,7 +17,7 @@ class AuthService{
             'email' => 'email atau password salah',
         ])->onlyInput('email');
     }
-    public function logout($request){
+    public static function logout($request){
         FacadesAuth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
