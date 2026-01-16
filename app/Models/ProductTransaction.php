@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductTransaction extends Model
 {
+    use SoftDeletes;
     protected $guarded = ["id"];
     public function produk():BelongsTo
     {

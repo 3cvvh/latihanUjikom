@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ProductTransactions\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -18,6 +19,7 @@ class ProductTransactionForm
                     ->required(),
                 TextInput::make('phone')
                     ->tel()
+                    ->numeric()
                     ->required(),
                 TextInput::make('email')
                     ->label('Email address')
@@ -27,30 +29,29 @@ class ProductTransactionForm
                     ->required(),
                 TextInput::make('post_code')
                     ->required(),
-                TextInput::make('proof')
+                FileUpload::make('proof')
+                    ->image()
                     ->required(),
                 TextInput::make('produk_size')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->label("ukuran sepatu"),
                 Textarea::make('address')
                     ->required()
+                    ->label("alamat")
                     ->columnSpanFull(),
                 TextInput::make('quantity')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('subTotal_amount')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('grand_total_amount')
+                    ->label("jumlah barang")
                     ->required()
                     ->numeric(),
                 Toggle::make('is_paid')
+                    ->label("status bayar")
                     ->required(),
-                Select::make('produk')
+                Select::make('id_produk')
                     ->relationship("produk","name")
                     ->required(),
                 Select::make('promo_code_id')
-                    ->relationship('promoCode', 'id')
+                    ->relationship('promoCode', 'code')
                     ->nullable(),
             ]);
     }

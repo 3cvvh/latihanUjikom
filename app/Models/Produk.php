@@ -29,9 +29,8 @@ class Produk extends Model
     {
         return $this->hasMany(Produk::class, 'id_produk');
     }
-    public function sizes():HasMany
-    {
-        return $this->hasMany(ProdukSize::class, 'id_produk');
+    public function sizes():HasMany{
+        return $this->hasMany(ProdukSize::class,"id_produk");
     }
     public function photos():HasMany
     {

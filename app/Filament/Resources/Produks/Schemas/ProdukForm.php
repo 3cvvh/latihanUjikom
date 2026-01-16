@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\Produks\Schemas;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Symfony\Component\Console\Completion\Suggestion;
 
 class ProdukForm
 {
@@ -28,8 +30,10 @@ class ProdukForm
                     FileUpload::make("photo")
                     ->image()
                     ->directory("photo-products")
+                    ->nullable()
                     ->disk("public"),
-                ]),
+                ])->addActionLabel("tambahkan foto")
+                ->defaultItems(0),
                 Textarea::make('about')
                     ->label("tentang")
                     ->required()
@@ -51,6 +55,13 @@ class ProdukForm
                     ->label("merek")
                     ->relationship('brand', 'name')
                     ->required(),
+                Repeater::make("sizes")
+                    ->relationship("sizes")
+                    ->schema([
+                    TextInput::make("size"),
+                    ])
+
+
             ]);
     }
 }

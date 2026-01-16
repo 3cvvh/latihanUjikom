@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,22 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@gmail.com',
         ]);
         Category::create([
-            "name" => "aqil",
+            "name" => "olahraga",
+        ]);
+        Category::create([
+            "name" => "casual",
+        ]);
+        Category::create([
+            "name" => "safety",
+        ]);
+        Brand::create([
+            "name" => "Ventela",
+        ]);
+        Brand::create([
+            "name" => "compass",
+        ]);
+        Brand::create([
+            "name" => "AeroStreet",
         ]);
     }
 }

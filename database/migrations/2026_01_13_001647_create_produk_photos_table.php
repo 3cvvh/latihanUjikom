@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('produk_photos', function (Blueprint $table) {
             $table->id();
-            $table->string("photo");
+            $table->string("photo")->nullable();
             $table->foreignId("id_produk")->constrained("produks")->onDelete("cascade");
             $table->softDeletes();
             $table->timestamps();

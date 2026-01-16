@@ -7,6 +7,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -23,8 +24,8 @@ class ProductTransactionInfolist
                 TextEntry::make('booking_trx_id'),
                 TextEntry::make('city'),
                 TextEntry::make('post_code'),
-                FileUpload::make('proof')
-                ->image(),
+                ImageEntry::make('proof')
+                    ->label("bukti transaksi"),
                 TextEntry::make('produk_size')
                     ->numeric(),
                 TextEntry::make('address')

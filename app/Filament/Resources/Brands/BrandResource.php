@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
-
+    protected static ?string $navigationLabel = "merek";
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
 
     protected static ?string $recordTitleAttribute = 'Brand';

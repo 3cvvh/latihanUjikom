@@ -10,6 +10,8 @@ use App\Filament\Resources\ProductTransactions\Schemas\ProductTransactionForm;
 use App\Filament\Resources\ProductTransactions\Schemas\ProductTransactionInfolist;
 use App\Filament\Resources\ProductTransactions\Tables\ProductTransactionsTable;
 use App\Models\ProductTransaction;
+use App\Models\Produk;
+use App\Models\PromoCode;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -19,6 +21,8 @@ use Filament\Tables\Table;
 class ProductTransactionResource extends Resource
 {
     protected static ?string $model = ProductTransaction::class;
+
+    protected static ?string $navigationLabel = "transaksi";
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingCart;
 

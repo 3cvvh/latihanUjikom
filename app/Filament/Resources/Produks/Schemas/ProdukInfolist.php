@@ -3,8 +3,11 @@
 namespace App\Filament\Resources\Produks\Schemas;
 
 use App\Models\Produk;
+use App\Models\ProdukSize;
+use Dom\Text;
 use Filament\Forms\Components\Repeater;
 use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 // use Filament\Infolists\Components\Entries\RepeatableEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
@@ -46,6 +49,10 @@ class ProdukInfolist
                 TextEntry::make('updated_at')
                     ->dateTime()
                     ->placeholder('-'),
+                RepeatableEntry::make("sizes")
+                    ->schema([
+                        TextEntry::make("size")
+                    ])
             ]);
     }
 }

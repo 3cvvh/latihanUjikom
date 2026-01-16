@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ProductTransactions\Tables;
+namespace App\Filament\Resources\Users\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class ProductTransactionsTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
@@ -18,24 +17,9 @@ class ProductTransactionsTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('phone')
-                    ->label("nomor")
-                    ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('booking_trx_id')
-                    ->label("transaksi ID")
-                    ->searchable(),
-                TextColumn::make('promoCode.id')
-                    ->searchable(),
-                TextColumn::make("grand_total_amount")
-                ->label("total")
-                ->searchable(),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

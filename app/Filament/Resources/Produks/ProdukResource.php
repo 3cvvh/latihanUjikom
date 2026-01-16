@@ -18,9 +18,10 @@ use Filament\Tables\Table;
 
 class ProdukResource extends Resource
 {
+    protected static ?string $navigationLabel = "sepatu";
     protected static ?string $model = Produk::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::Trash;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Scale;
 
     protected static ?string $recordTitleAttribute = 'Produk';
 
@@ -55,4 +56,6 @@ class ProdukResource extends Resource
             'edit' => EditProduk::route('/{record}/edit'),
         ];
     }
+
 }
+
