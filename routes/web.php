@@ -20,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 //         return view("dashboard.index", compact("title"));
 //     })->name("dashboard.index");
 // });
+use App\Models\ProductTransaction;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+Route::get('/cetak/{id}/print', function ($id) {
+    $record = ProductTransaction::findOrFail($id);
+    $pdf = Pdf::loadView('transaction.pdf', compact('record'));
+    return $pdf->download('transaction-'.$record->id.'.pdf');
+})->name('cetak.print');
+

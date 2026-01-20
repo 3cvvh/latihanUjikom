@@ -20,8 +20,10 @@ class CreateProductTransaction extends CreateRecord
     $harga = $produk->price * $data["quantity"];
     //jika produk stock nya kosong atau kurang
     if($produk->stock < $data["quantity"]){
-            throw ValidationException::withMessages([ 'quantity' => 'Jumlah melebihi stok tersedia.', ]);
-            Notification::make()->danger();
+            Notification::make()->title('Stock produk tidak mencukupi untuk dipesan')
+            ->danger()
+            ->send();
+            return ["tai" => "error"];
         }
     //jika ada diskon
     if(!empty($data["promo_code_id"])){
