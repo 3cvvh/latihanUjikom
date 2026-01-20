@@ -23,7 +23,8 @@ class ProduksTable
                     ->searchable(),
                 TextColumn::make('price')
                     ->label("harga")
-                    ->money("IDR")
+                    ->prefix("Rp ")
+                    ->numeric()
                     ->sortable(),
                 TextColumn::make('stock')
                     ->numeric()

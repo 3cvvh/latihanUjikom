@@ -14,7 +14,7 @@ class CreateProductTransaction extends CreateRecord
     protected static string $resource = ProductTransactionResource::class;
         protected function mutateFormDataBeforeCreate(array $data):array
     {
-    //ambil data
+    //ambil datas
     $produk = Produk::find($data["id_produk"]);
     //jumlah kan total
     $harga = $produk->price * $data["quantity"];
@@ -27,14 +27,14 @@ class CreateProductTransaction extends CreateRecord
     if(!empty($data["promo_code_id"])){
         $promo = PromoCode::find($data["promo_code_id"]);
         $grandTotal =  $harga - $promo->discountamount;
-    }
+        }
 
-    $data["booking_trx_id"] = "aqil-". mt_rand(1,1000);
-    //kurangi stock sesuai yang dipesan
-    $produk->stock -= $data["quantity"];
-    $produk->save();
-    $data["subTotal_amount"] = $harga;
-    $data["grand_total_amount"] = $grandTotal ? $grandTotal : $harga;
-    return $data;
+        $data["booking_trx_id"] = "aqil-". mt_rand(1,1000);
+        //kurangi stock sesuai yang dipesan
+        $produk->stock -= $data["quantity"];
+        $produk->save();
+        $data["grand_total_amount"] =  isset($grandTotal) ? $grandTotal : $harga;
+        $data["subTotal_amount"] = $harga;
+        return $data;
     }
 }

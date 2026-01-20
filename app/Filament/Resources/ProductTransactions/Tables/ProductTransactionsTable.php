@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ProductTransactions\Tables;
 
+use App\Filament\Resources\ProductTransactions\Actions\ApproveAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -27,10 +28,15 @@ class ProductTransactionsTable
                 TextColumn::make('booking_trx_id')
                     ->label("transaksi ID")
                     ->searchable(),
-                TextColumn::make('promoCode.id')
+                TextColumn::make('promoCode.discountamount')
+                    ->prefix("Rp ")
+                    ->numeric()
+                    ->default("tidak megunakan promocode")
                     ->searchable(),
                 TextColumn::make("grand_total_amount")
                 ->label("total")
+                ->prefix("Rp ")
+                ->numeric()
                 ->searchable(),
                 TextColumn::make('deleted_at')
                     ->dateTime()
@@ -51,10 +57,11 @@ class ProductTransactionsTable
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+                ApproveAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                                    DeleteBulkAction::make(),
                 ]),
             ]);
     }

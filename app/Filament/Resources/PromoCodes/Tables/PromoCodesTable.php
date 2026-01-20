@@ -20,6 +20,7 @@ class PromoCodesTable
                 TextColumn::make('discountamount')
                     ->numeric()
                     ->label("potongan harga")
+                    ->prefix("Rp ")
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime("D,M,Y")
